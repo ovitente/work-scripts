@@ -1,0 +1,14 @@
+[
+    {
+        "ID": "snap-02cfe6902b065c7f5",
+        "Time": "2021-10-14T06:44:33.344000+00:00",
+        "Volumecreatedfrom": "vol-04bb5af929d08bf8a",
+        "SnapshotSize": 8
+    },
+    {
+        "ID": "snap-0b00acd0c0c6f2f8d",
+        "Time": "2021-10-14T06:44:45.973000+00:00",
+        "Volumecreatedfrom": "vol-0ddc4f83153e6cbb2",
+        "SnapshotSize": 8
+    }
+]

@@ -1,0 +1,21 @@
+  INSTANCE_TYPE="$(aws ec2 describe-instances --instance-ids ${instance_id} | jq .Reservations[].Instances[].InstanceType -r)"
+  OUTPUT_LINE="${instance_id} | $INSTANCE_TYPE"
+
+
+
+
+
+
+
+
+
+
+i-0b9687fd4e197fad0
+i-05fe40af2189c566d
+i-023f04b8ff0cb430d
+i-0b9687fd4e197fad0
+i-0b9687fd4e197fad0
+i-05fe40af2189c566d
+i-023f04b8ff0cb430d
+i-05fe40af2189c566d
+i-023f04b8ff0cb430d
