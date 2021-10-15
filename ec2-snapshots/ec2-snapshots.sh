@@ -9,11 +9,11 @@ JSON_SOURCE="snapshots.json"
 ARRAY_INDEX=""
 
 # Cleaning before new start
-# rm -rf $JSON_SOURCE
+rm -rf $JSON_SOURCE
 # Get json with spanshots
-# aws ec2 describe-snapshots \
-#   --owner-ids ${CREATOR_ID} \
-#   --query "Snapshots[*].{ID:SnapshotId,CreationTime:StartTime,Source:VolumeId,Size:VolumeSize}" > ${JSON_SOURCE}
+aws ec2 describe-snapshots \
+  --owner-ids ${CREATOR_ID} \
+  --query "Snapshots[*].{ID:SnapshotId,CreationTime:StartTime,Source:VolumeId,Size:VolumeSize}" > ${JSON_SOURCE}
 
 # Count elements in the json starting with [0]
 ARRAY_INDEX=$(grep -o -i ID ${JSON_SOURCE} | wc -l)
