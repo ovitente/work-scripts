@@ -2,14 +2,14 @@
 
 # Used tools: aws, grep, jq, cut, wc
 
-# Cleaning before new start
-rm -rf $JSON_SOURCE
 
 CREATOR_ID="self"
 
 JSON_SOURCE="snapshots.json"
 ARRAY_INDEX=""
 
+# Cleaning before new start
+rm -rf $JSON_SOURCE
 # Get json with spanshots
 aws ec2 describe-snapshots \
   --owner-ids ${CREATOR_ID} \
