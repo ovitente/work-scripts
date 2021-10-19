@@ -36,3 +36,12 @@ do
 
   i=$(($i+1))
 done
+
+# OR just use
+# aws ec2 describe-snapshots --owner-ids self --query "Snapshots[*].{ID:SnapshotId,CreationTime:StartTime,Source:VolumeId,Size:VolumeSize}" --output table
+
+# declare -A InstanceVolumeArray
+assArray1[fruit]=Mango
+assArray1[bird]=Cockatail
+assArray1[flower]=Rose
+assArray1[animal]=Tiger
