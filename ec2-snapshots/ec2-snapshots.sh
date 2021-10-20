@@ -12,8 +12,8 @@ ARRAY_INDEX=""
 rm -rf $JSON_SOURCE
 # Get json with spanshots
 aws ec2 describe-snapshots \
-  --owner-ids ${CREATOR_ID} \
-  --query "Snapshots[*].{ID:SnapshotId,CreationTime:StartTime,Source:VolumeId,Size:VolumeSize}" > ${JSON_SOURCE}
+  --owner-ids self \
+  --query "Snapshots[*].{ID:SnapshotId,CreationTime:StartTime,Source:VolumeId,Size:VolumeSize}" > snapshots.json
 
 # Count elements in the json starting with [0]
 ARRAY_INDEX=$(grep -o -i ID ${JSON_SOURCE} | wc -l)
@@ -38,7 +38,7 @@ do
 done
 
 # OR just use
-# aws ec2 describe-snapshots --owner-ids self --query "Snapshots[*].{ID:SnapshotId,CreationTime:StartTime,Source:VolumeId,Size:VolumeSize}" --output table
+# aws ec2 describe-snapshots --owner-ids self --query "Snapshots[*].{ID:SnapshotId,CreationTime:StartTime,Source:VolumeId,Size:VolumeSize,IsEncrypted:Encrypted, Tags:Tags[]}" --output text | column -t
 
 # declare -A InstanceVolumeArray
 assArray1[fruit]=Mango
