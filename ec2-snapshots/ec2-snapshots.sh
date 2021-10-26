@@ -39,9 +39,3 @@ done
 
 # OR just use
 # aws ec2 describe-snapshots --owner-ids self --query "Snapshots[*].{ID:SnapshotId,CreationTime:StartTime,Source:VolumeId,Size:VolumeSize,IsEncrypted:Encrypted, Tags:Tags[]}" --output text | column -t
-
-# declare -A InstanceVolumeArray
-assArray1[fruit]=Mango
-assArray1[bird]=Cockatail
-assArray1[flower]=Rose
-assArray1[animal]=Tiger
