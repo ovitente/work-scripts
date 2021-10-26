@@ -1,11 +1,7 @@
-#!/usr/local/bin/bash
 #!/usr/bin/env bash
+#!/usr/local/bin/bash
 
-# declare -a VOLUMES_ID_ARRAY
-# VOLUMES_ID_ARRAY=($(aws ec2 describe-snapshots --owner-ids self --query "Snapshots[*].{VolumeId:VolumeId}" --output text | tr '\n' ' '))
 read -a VOLUMES_ID_ARRAY <<< $(aws ec2 describe-snapshots --owner-ids self --query "Snapshots[*].{VolumeId:VolumeId}" --output text | tr '\n' ' ')
-# VOLUMES_ID_ARRAY=("vol-08f583eb5eb254e3b" "vol-0f2fc06447ab757ea" "vol-08f583eb5eb254e3b" "vol-0f2fc06447ab757ea" "vol-0f2fc06447ab757ea" "vol-08f583eb5eb254e3b")
-# echo "${VOLUMES_ID_ARRAY[@]}"
 
 declare -A InstanceVolumeArray # Array that will combine both indexed arrays
 JSON_SOURCE="volumes.json"
@@ -20,14 +16,13 @@ do
   i=$(($i+1))
 done
 
-echo "----- Volume ID ------| --- Instance ID ---"
-for instance_id in "${!InstanceVolumeArray[@]}"; do
-  echo "$instance_id | ${InstanceVolumeArray[$instance_id]}"
-done
-
-for i in "${VOLUMES_ID_ARRAY[@]}"
+for volume in "${VOLUMES_ID_ARRAY[@]}"
 do
-  # echo "${VOLUMES_ID_ARRAY[$i]}"
-  echo "$i"
+  # echo "$volume"
 
+  for key in "${!InstanceVolumeArray[@]}"; do
+    if [ $volume = $key ]; then
+      echo "$volume | ${InstanceVolumeArray[$key]}"
+    fi
+  done
 done
